@@ -1,0 +1,82 @@
+---
+import { navigation } from '../data/navigation';
+---
+
+<header class="sticky top-0 z-50 border-b border-[#1572B6]/20 bg-[#0B0E14]/95 backdrop-blur-md">
+  <nav
+    class="mx-auto flex min-h-20 w-[min(100%-2rem,1440px)] items-center justify-between gap-6"
+    aria-label="Navegação principal"
+  >
+    <a
+      href="#inicio"
+      class="flex shrink-0 items-center gap-2"
+      aria-label="Ana Beatriz"
+    >
+      <img
+        src="../../logo.svg"
+        alt="ab. — Ana Beatriz"
+        width="144"
+        height="52"
+      />
+    </a>
+
+    <ul class="hidden items-center gap-5 lg:flex">
+      {navigation.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="text-sm text-slate-400 transition-colors hover:text-[#1572B6]"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a
+      href="#contato"
+      class="hidden items-center gap-2 border border-[#1572B6]/50 px-4 py-2 text-sm transition-colors hover:border-[#1572B6] hover:bg-[#1572B6]/10 sm:inline-flex"
+    >
+      <span>Vamos conversar</span>
+      <span class="text-[#1572B6]" aria-hidden="true">
+        ↗
+      </span>
+    </a>
+
+    <details class="group relative lg:hidden">
+      <summary
+        class="flex h-10 w-10 cursor-pointer list-none flex-col items-center justify-center gap-1.5 border border-[#1572B6]/40 [&::-webkit-details-marker]:hidden"
+        aria-label="Abrir menu de navegação"
+      >
+        <span class="h-0.5 w-5 bg-[#E8EDF4]"></span>
+        <span class="h-0.5 w-5 bg-[#E8EDF4]"></span>
+        <span class="h-0.5 w-5 bg-[#E8EDF4]"></span>
+      </summary>
+
+      <div class="absolute right-0 top-full mt-4 w-64 border border-[#1572B6]/20 bg-[#0B0E14] p-4 shadow-xl">
+        <ul class="flex flex-col">
+          {navigation.map((item) => (
+            <li class="border-b border-white/5 last:border-0">
+              <a
+                href={item.href}
+                class="block py-3 text-sm text-slate-400 transition-colors hover:text-[#1572B6]"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href="#contato"
+          class="mt-4 flex items-center justify-between border border-[#1572B6]/50 px-3 py-3 text-sm transition-colors hover:bg-[#1572B6]/10"
+        >
+          <span>Vamos conversar</span>
+          <span class="text-[#1572B6]" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </div>
+    </details>
+  </nav>
+</header>
