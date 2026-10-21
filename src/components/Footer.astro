@@ -1,7 +1,13 @@
 ---
+import { pt, en } from '../data/translations';
+
 const publicBase = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+interface Props { lang?: 'pt' | 'en'; }
+const { lang = 'pt' } = Astro.props as Props;
+const locale = lang === 'en' ? en : pt;
+const footer = locale.footer;
 ---
 
 <footer class="border-t border-white/10 bg-[#0B0E14]">
@@ -9,23 +15,23 @@ const publicBase = import.meta.env.BASE_URL.endsWith('/')
     <a
       href="#inicio"
       class="inline-flex w-fit items-center gap-3"
-      aria-label="Ana Beatriz - voltar ao início"
+      aria-label={footer.backLabel}
     >
-      <img src={`${publicBase}logo.svg`} alt="ab. — Ana Beatriz" width="56" height="32" />
+      <img src={`${publicBase}logo.svg`} alt={locale.nav.logoAlt} width="56" height="32" />
       <span class="h-4 w-px bg-white/15"></span>
       <span class="font-mono text-[10px] uppercase tracking-wider text-slate-500">
-        Sistemas <span class="text-[#A12D21]">/</span> Dados
+        {footer.tagline[0]} <span class="text-[#A12D21]">/</span> {footer.tagline[1]}
       </span>
     </a>
 
     <p class="m-0 text-xs text-slate-500">
-      Feito com curiosidade e vontade de aprender.
+      {footer.note}
     </p>
 
     <div class="flex items-center justify-between gap-5 font-mono text-[10px] text-slate-500 sm:justify-end">
-      <span>© {new Date().getFullYear()} Ana Beatriz</span>
+      <span>© {new Date().getFullYear()} {footer.copyrightName}</span>
       <a href="#inicio" class="transition-colors hover:text-[#1572B6]">
-        Voltar ao topo ↑
+        {footer.backToTop}
       </a>
     </div>
   </div>

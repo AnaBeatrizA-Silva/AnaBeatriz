@@ -1,5 +1,11 @@
 ---
-import { navigation } from '../data/navigation';
+import { pt, en } from '../data/translations';
+
+interface Props { lang?: 'pt' | 'en'; }
+const { lang = 'pt' } = Astro.props as Props;
+const locale = lang === 'en' ? en : pt;
+const links = locale.navigation;
+const labels = locale.nav;
 
 const publicBase = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -9,18 +15,18 @@ const publicBase = import.meta.env.BASE_URL.endsWith('/')
 <header class="sticky top-0 z-50 border-b border-[#1572B6]/20 bg-[#0B0E14]/95 backdrop-blur-md">
   <nav
     class="mx-auto flex min-h-20 w-[min(100%-2rem,1440px)] items-center justify-between gap-6"
-    aria-label="Navegação principal"
+    aria-label={labels.ariaLabel}
   >
     <a
       href="#inicio"
       class="flex shrink-0 items-center gap-2"
-      aria-label="Ana Beatriz"
+      aria-label={labels.homeLabel}
     >
-      <img src={`${publicBase}logo.svg`} alt="ab. — Ana Beatriz" width="92" height="52" />
+      <img src={`${publicBase}logo.svg`} alt={labels.logoAlt} width="92" height="52" />
     </a>
 
     <ul class="hidden items-center gap-5 lg:flex">
-      {navigation.map((item) => (
+      {links.map((item) => (
         <li>
           <a
             href={item.href}
@@ -32,20 +38,37 @@ const publicBase = import.meta.env.BASE_URL.endsWith('/')
       ))}
     </ul>
 
-    <a
-      href="#contato"
-      class="hidden items-center gap-2 border border-[#1572B6]/50 px-4 py-2 text-sm transition-colors hover:border-[#1572B6] hover:bg-[#1572B6]/10 sm:inline-flex"
+    <div
+      class="hidden items-center border border-[#1572B6]/35 bg-[#0E121A] p-1 font-mono text-xs sm:inline-flex"
+      role="group"
+      aria-label={labels.chooseLanguage}
     >
-      <span>Vamos conversar</span>
-      <span class="text-[#1572B6]" aria-hidden="true">
-        ↗
-      </span>
-    </a>
+      <a
+        href={publicBase}
+        aria-current={lang === 'pt' ? 'page' : undefined}
+        class:list={[
+          'min-w-9 px-2.5 py-1.5 text-center transition-colors',
+          lang === 'pt'
+            ? 'bg-[#1572B6]/20 text-[#E8EDF4]'
+            : 'text-slate-500 hover:text-[#E8EDF4]',
+        ]}
+      >{labels.languageCodes[0]}</a>
+      <a
+        href={`${publicBase}en/`}
+        aria-current={lang === 'en' ? 'page' : undefined}
+        class:list={[
+          'min-w-9 px-2.5 py-1.5 text-center transition-colors',
+          lang === 'en'
+            ? 'bg-[#1572B6]/20 text-[#E8EDF4]'
+            : 'text-slate-500 hover:text-[#E8EDF4]',
+        ]}
+      >{labels.languageCodes[1]}</a>
+    </div>
 
     <details class="group relative lg:hidden">
       <summary
         class="flex h-10 w-10 cursor-pointer list-none flex-col items-center justify-center gap-1.5 border border-[#1572B6]/40 [&::-webkit-details-marker]:hidden"
-        aria-label="Abrir menu de navegação"
+        aria-label={labels.openMenu}
       >
         <span class="h-0.5 w-5 bg-[#E8EDF4]"></span>
         <span class="h-0.5 w-5 bg-[#E8EDF4]"></span>
@@ -54,7 +77,7 @@ const publicBase = import.meta.env.BASE_URL.endsWith('/')
 
       <div class="absolute right-0 top-full mt-4 w-64 border border-[#1572B6]/20 bg-[#0B0E14] p-4 shadow-xl">
         <ul class="flex flex-col">
-          {navigation.map((item) => (
+          {links.map((item) => (
             <li class="border-b border-white/5 last:border-0">
               <a
                 href={item.href}
@@ -66,15 +89,13 @@ const publicBase = import.meta.env.BASE_URL.endsWith('/')
           ))}
         </ul>
 
-        <a
-          href="#contato"
-          class="mt-4 flex items-center justify-between border border-[#1572B6]/50 px-3 py-3 text-sm transition-colors hover:bg-[#1572B6]/10"
-        >
-          <span>Vamos conversar</span>
-          <span class="text-[#1572B6]" aria-hidden="true">
-            ↗
-          </span>
-        </a>
+        <div class="mt-4 flex items-center justify-between border border-[#1572B6]/35 p-1 font-mono text-xs" role="group" aria-label={labels.chooseLanguage}>
+          <span class="px-2 text-slate-500">{labels.language}</span>
+          <div class="flex gap-1">
+            <a href={publicBase} aria-current={lang === 'pt' ? 'page' : undefined} class:list={['px-3 py-2', lang === 'pt' ? 'bg-[#1572B6]/20 text-[#E8EDF4]' : 'text-slate-500']}>{labels.languageCodes[0]}</a>
+            <a href={`${publicBase}en/`} aria-current={lang === 'en' ? 'page' : undefined} class:list={['px-3 py-2', lang === 'en' ? 'bg-[#1572B6]/20 text-[#E8EDF4]' : 'text-slate-500']}>{labels.languageCodes[1]}</a>
+          </div>
+        </div>
       </div>
     </details>
   </nav>

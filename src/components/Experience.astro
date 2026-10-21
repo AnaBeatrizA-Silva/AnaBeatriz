@@ -1,5 +1,10 @@
 ---
-import { experience } from '../data/experience';
+import { pt, en } from '../data/translations';
+
+interface Props { lang?: 'pt' | 'en'; }
+const { lang = 'pt' } = Astro.props as Props;
+const locale = lang === 'en' ? en : pt;
+const content = locale.experience;
 ---
 
 <section
@@ -10,20 +15,20 @@ import { experience } from '../data/experience';
     <header class="mb-16 max-w-2xl">
       <p class="mb-4 flex items-center gap-3 font-mono text-xs tracking-[0.2em] text-[#1572B6]">
         <span class="h-px w-8 bg-[#1572B6]"></span>
-        {experience.eyebrow}
+        {content.eyebrow}
       </p>
 
       <h2 class="text-3xl font-bold tracking-tight text-[#E8EDF4] sm:text-4xl">
-        {experience.title}
+        {content.title}
       </h2>
 
       <p class="mt-5 text-base leading-8 text-slate-400 sm:text-lg">
-        {experience.description}
+        {content.description}
       </p>
     </header>
 
     <div class="relative space-y-12 before:absolute before:bottom-4 before:left-1.75 before:top-2 before:w-px before:bg-linear-to-b before:from-[#1572B6]/70 before:via-white/10 before:to-[#A12D21]/70">
-      {experience.jobs.map((job, index) => (
+      {content.jobs.map((job, index) => (
         <article class="relative pl-8 sm:pl-12">
           <span
             class:list={[
@@ -59,7 +64,7 @@ import { experience } from '../data/experience';
 
             <div class="mt-7">
               <h4 class="mb-4 font-mono text-xs tracking-widest text-slate-500">
-                PRINCIPAIS ATIVIDADES
+                {content.activitiesHeading}
               </h4>
 
               <ul class="space-y-3">

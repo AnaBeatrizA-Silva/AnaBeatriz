@@ -1,5 +1,10 @@
 ---
-import { education } from '../data/education';
+import { pt, en } from '../data/translations';
+
+interface Props { lang?: 'pt' | 'en'; }
+const { lang = 'pt' } = Astro.props as Props;
+const locale = lang === 'en' ? en : pt;
+const content = locale.education;
 ---
 
 <section
@@ -10,20 +15,20 @@ import { education } from '../data/education';
     <header class="mb-14 max-w-2xl">
       <p class="mb-4 flex items-center gap-3 font-mono text-xs tracking-[0.2em] text-[#A12D21]">
         <span class="h-px w-8 bg-[#A12D21]"></span>
-        {education.eyebrow}
+        {content.eyebrow}
       </p>
 
       <h2 class="text-3xl font-bold tracking-tight text-[#E8EDF4] sm:text-4xl">
-        {education.title}
+        {content.title}
       </h2>
 
       <p class="mt-5 text-base leading-8 text-slate-400 sm:text-lg">
-        {education.description}
+        {content.description}
       </p>
     </header>
 
     <div class="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
-      {education.entries.map((entry, index) => (
+      {content.entries.map((entry, index) => (
         <article
           class:list={[
             'relative border bg-[#151B24]/50 p-6 transition-colors hover:border-white/20 sm:p-8',
@@ -70,7 +75,7 @@ import { education } from '../data/education';
             <span
               class:list={[
                 'inline-flex items-center gap-2 text-xs font-medium',
-                entry.status === 'Em andamento'
+                entry.status === content.inProgress
                   ? 'text-[#1572B6]'
                   : 'text-slate-400',
               ]}
@@ -78,7 +83,7 @@ import { education } from '../data/education';
               <span
                 class:list={[
                   'h-1.5 w-1.5 rounded-full',
-                  entry.status === 'Em andamento'
+                  entry.status === content.inProgress
                     ? 'bg-[#1572B6]'
                     : 'bg-slate-500',
                 ]}

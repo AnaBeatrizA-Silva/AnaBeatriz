@@ -1,5 +1,10 @@
 ---
-import { hero } from '../data/hero';
+import { pt, en } from '../data/translations';
+
+interface Props { lang?: 'pt' | 'en'; }
+const { lang = 'pt' } = Astro.props as Props;
+const locale = lang === 'en' ? en : pt;
+const content = locale.hero;
 ---
 
 <section
@@ -19,45 +24,45 @@ import { hero } from '../data/hero';
         </span>
 
         <span class="font-mono text-xs tracking-wide text-slate-300 sm:text-sm">
-          {hero.availability}
+          {content.availability}
         </span>
       </div>
 
       <p class="mb-3 font-mono text-sm tracking-widest text-[#1572B6] sm:text-base">
-        {hero.greeting}
+        {content.greeting}
       </p>
 
       <h1 class="max-w-3xl text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-        <span class="block text-[#E8EDF4]">{hero.name}</span>
-        <span class="mt-2 block text-[#A12D21]">{hero.surname}</span>
+        <span class="block text-[#E8EDF4]">{content.name}</span>
+        <span class="mt-2 block text-[#A12D21]">{content.surname}</span>
       </h1>
 
       <div class="mt-8 space-y-2">
         <h2 class="text-xl font-semibold text-[#E8EDF4] sm:text-2xl">
-          {hero.role}
+          {content.role}
         </h2>
 
-        <p class="text-base text-slate-400 sm:text-lg">{hero.transition}</p>
+        <p class="text-base text-slate-400 sm:text-lg">{content.transition}</p>
       </div>
 
       <p class="mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
-        {hero.description}
+        {content.description}
       </p>
 
       <div class="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
         <a
-          href={hero.primaryAction.href}
+          href={content.primaryAction.href}
           class="inline-flex min-h-12 items-center justify-center gap-3 bg-[#A12D21] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#86251C]"
         >
-          {hero.primaryAction.label}
+          {content.primaryAction.label}
           <span aria-hidden="true">↓</span>
         </a>
 
         <a
-          href={hero.secondaryAction.href}
+          href={content.secondaryAction.href}
           class="inline-flex min-h-12 items-center justify-center gap-3 border border-[#1572B6]/50 px-6 py-3 text-sm font-semibold text-[#E8EDF4] transition-colors hover:border-[#1572B6] hover:bg-[#1572B6]/10"
         >
-          {hero.secondaryAction.label}
+          {content.secondaryAction.label}
           <span aria-hidden="true" class="text-[#1572B6]">
             ↗
           </span>
@@ -65,7 +70,7 @@ import { hero } from '../data/hero';
       </div>
 
       <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-6">
-        {hero.socialLinks.map((link) => (
+        {content.socialLinks.map((link) => (
           <a
             href={link.href}
             class="font-mono text-sm text-slate-500 transition-colors hover:text-[#1572B6]"
@@ -94,95 +99,77 @@ import { hero } from '../data/hero';
             <span class="h-2.5 w-2.5 rounded-full bg-slate-600"></span>
           </div>
 
-          <span class="font-mono text-xs text-slate-500">ana / focus</span>
+          <span class="font-mono text-xs text-slate-500">{content.visual.windowTitle}</span>
         </div>
 
         <div class="space-y-8 p-6 sm:p-8">
           <div>
             <p class="font-mono text-xs tracking-widest text-[#A12D21]">
-              // {hero.visual.label}
+              // {content.visual.label}
             </p>
 
             <h3 class="mt-3 text-2xl font-bold tracking-tight text-[#E8EDF4] sm:text-3xl">
-              {hero.visual.value}
+              {content.visual.value}
             </h3>
 
             <p class="mt-2 text-sm leading-6 text-slate-400">
-              Construindo a ponte entre desenvolvimento de sistemas e
-              inteligência baseada em dados.
+              {content.visual.explanation}
             </p>
           </div>
 
-          <div class="data-flow-board" aria-label="Animação de fluxo: origem, transformação e consulta">
+          <div class="data-flow-board" aria-label={content.visual.pipeline.ariaLabel}>
             <div class="data-flow-board-head">
-              <span>PIPELINE / EM MOVIMENTO</span>
-              <span><i></i> LIVE</span>
+              <span>{content.visual.pipeline.heading}</span>
+              <span><i></i> {content.visual.pipeline.liveLabel}</span>
             </div>
             <div class="data-flow-track" aria-hidden="true">
-              <div class="data-flow-node data-node-blue"><span>DB</span></div>
+              <div class="data-flow-node data-node-blue"><span>{content.visual.stages[0].code}</span></div>
               <div class="data-flow-rail"><i></i><i></i><i></i></div>
-              <div class="data-flow-node data-node-red"><span>ETL</span></div>
+              <div class="data-flow-node data-node-red"><span>{content.visual.stages[1].code}</span></div>
               <div class="data-flow-rail data-rail-blue"><i></i><i></i><i></i></div>
-              <div class="data-flow-node data-node-blue"><span>SQL</span></div>
+              <div class="data-flow-node data-node-blue"><span>{content.visual.stages[2].code}</span></div>
             </div>
             <div class="data-flow-labels" aria-hidden="true">
-              <span>origem</span><span>transformação</span><span>consulta</span>
+              <span>{content.visual.pipeline.source}</span><span>{content.visual.pipeline.transform}</span><span>{content.visual.pipeline.query}</span>
             </div>
           </div>
 
           <div class="space-y-0">
-            <div class="flex items-center gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center border border-[#1572B6]/30 bg-[#1572B6]/10 font-mono text-sm text-[#1572B6]">
-                DB
-              </span>
-
+            {content.visual.stages.map((stage, index) => (
               <div>
-                <p class="text-sm font-semibold text-[#E8EDF4]">
-                  Banco de dados
-                </p>
-                <p class="text-xs text-slate-500">
-                  Estruturação e consultas SQL
-                </p>
+                <div class="flex items-center gap-3">
+                  <span
+                    class:list={[
+                      'flex h-10 w-10 shrink-0 items-center justify-center border font-mono text-sm',
+                      index === 1
+                        ? 'border-[#A12D21]/30 bg-[#A12D21]/10 text-[#A12D21]'
+                        : 'border-[#1572B6]/30 bg-[#1572B6]/10 text-[#1572B6]',
+                    ]}
+                  >
+                    {stage.code}
+                  </span>
+                  <div>
+                    <p class="text-sm font-semibold text-[#E8EDF4]">{stage.title}</p>
+                    <p class="text-xs text-slate-500">{stage.detail}</p>
+                  </div>
+                </div>
+                {index < content.visual.stages.length - 1 && (
+                  <div
+                    class:list={[
+                      'ml-5 h-8 w-px bg-linear-to-b',
+                      index === 0
+                        ? 'from-[#1572B6] to-[#A12D21]'
+                        : 'from-[#A12D21] to-[#1572B6]',
+                    ]}
+                    aria-hidden="true"
+                  ></div>
+                )}
               </div>
-            </div>
-
-            <div class="ml-5 h-8 w-px bg-linear-to-b from-[#1572B6] to-[#A12D21]" aria-hidden="true"></div>
-
-            <div class="flex items-center gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center border border-[#A12D21]/30 bg-[#A12D21]/10 font-mono text-sm text-[#A12D21]">
-                ETL
-              </span>
-
-              <div>
-                <p class="text-sm font-semibold text-[#E8EDF4]">
-                  Fluxo de dados
-                </p>
-                <p class="text-xs text-slate-500">
-                  Interesse em integração e transformação
-                </p>
-              </div>
-            </div>
-
-            <div class="ml-5 h-8 w-px bg-linear-to-b from-[#A12D21] to-[#1572B6]" aria-hidden="true"></div>
-
-            <div class="flex items-center gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center border border-[#1572B6]/30 bg-[#1572B6]/10 font-mono text-sm text-[#1572B6]">
-                SQL
-              </span>
-
-              <div>
-                <p class="text-sm font-semibold text-[#E8EDF4]">
-                  Análise e consulta
-                </p>
-                <p class="text-xs text-slate-500">
-                  Explorando informações estruturadas
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div class="flex flex-wrap gap-2 border-t border-white/10 pt-5">
-            {hero.visual.technologies.map((technology) => (
+            {content.visual.technologies.map((technology) => (
               <span class="border border-white/10 px-3 py-1.5 font-mono text-xs text-slate-400">
                 {technology}
               </span>
@@ -190,7 +177,7 @@ import { hero } from '../data/hero';
           </div>
 
           <div class="flex items-center gap-3 border-l-2 border-[#A12D21] pl-4">
-            <span class="text-sm text-slate-400">{hero.visual.status}</span>
+            <span class="text-sm text-slate-400">{content.visual.status}</span>
           </div>
         </div>
       </div>
@@ -202,7 +189,7 @@ import { hero } from '../data/hero';
 
   <div class="mx-auto flex w-[min(100%-2rem,1440px)] items-center gap-3 pb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-600">
     <span class="h-px w-8 bg-[#A12D21]"></span>
-    <span>Desenvolvimento · Dados · Aprendizado contínuo</span>
+    <span>{content.visual.footer}</span>
   </div>
 </section>
 

@@ -1,5 +1,10 @@
 ---
-import { communication } from '../data/communication';
+import { pt, en } from '../data/translations';
+
+interface Props { lang?: 'pt' | 'en'; }
+const { lang = 'pt' } = Astro.props as Props;
+const locale = lang === 'en' ? en : pt;
+const content = locale.communication;
 ---
 
 <section
@@ -10,25 +15,25 @@ import { communication } from '../data/communication';
     <header class="mx-auto mb-10 max-w-2xl text-center sm:mb-12">
       <p class="mb-4 flex items-center justify-center gap-3 font-mono text-xs tracking-[0.2em] text-[#1572B6]">
         <span class="h-px w-8 bg-[#1572B6]"></span>
-        {communication.eyebrow}
+        {content.eyebrow}
         <span class="h-px w-8 bg-[#1572B6]"></span>
       </p>
       <h2 class="text-3xl font-bold tracking-tight text-[#E8EDF4] sm:text-4xl">
-        Comunicação &amp; idiomas
+        {content.title}
       </h2>
       <p class="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-        {communication.description}
+        {content.description}
       </p>
     </header>
 
     <div class="grid gap-5 md:grid-cols-[1.2fr_0.8fr]">
       <article class="border border-white/10 bg-[#151B24]/50 p-6 sm:p-8">
         <div class="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-          <h3 class="text-base font-semibold text-[#E8EDF4]">No dia a dia</h3>
-          <span class="font-mono text-[10px] tracking-widest text-[#A12D21]">SOFT_SKILLS</span>
+          <h3 class="text-base font-semibold text-[#E8EDF4]">{content.dayToDay}</h3>
+          <span class="font-mono text-[10px] tracking-widest text-[#A12D21]">{content.softSkillsLabel}</span>
         </div>
         <ul class="grid gap-3 sm:grid-cols-2">
-          {communication.strengths.map((strength, index) => (
+          {content.softSkills.map((strength, index) => (
             <li class="flex min-h-12 items-center gap-3 border border-white/5 bg-[#0B0E14]/60 px-3 py-2.5 text-sm text-slate-300">
               <span
                 class:list={[
@@ -46,14 +51,14 @@ import { communication } from '../data/communication';
         </ul>
       </article>
 
-      <article class="border border-[#1572B6]/25 bg-[#1572B6]/[0.04] p-6 sm:p-8">
+      <article class="border border-[#1572B6]/25 bg-[#1572B6]/4 p-6 sm:p-8">
         <div class="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-          <h3 class="text-base font-semibold text-[#E8EDF4]">Idiomas</h3>
-          <span class="font-mono text-[10px] tracking-widest text-[#1572B6]">LANGUAGES</span>
+          <h3 class="text-base font-semibold text-[#E8EDF4]">{content.languagesTitle}</h3>
+          <span class="font-mono text-[10px] tracking-widest text-[#1572B6]">{content.languagesLabel}</span>
         </div>
         <div class="grid gap-3">
-          {communication.languages.map((language, index) => (
-            <div class="flex min-h-[76px] items-center gap-4 border border-white/10 bg-[#0B0E14]/65 px-4 py-3">
+          {content.languages.map((language, index) => (
+            <div class="flex min-h-19 items-center gap-4 border border-white/10 bg-[#0B0E14]/65 px-4 py-3">
               <span
                 class:list={[
                   'flex h-10 w-10 shrink-0 items-center justify-center font-mono text-xs',

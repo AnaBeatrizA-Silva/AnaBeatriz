@@ -1,25 +1,20 @@
 ---
 import '../styles/global.css';
+import { pt, en } from '../data/translations';
 
 const publicBase = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
-interface Props {
-  title?: string;
-  description?: string;
-  lang?: string;
-}
+interface Props { lang?: 'pt' | 'en'; }
 
-const {
-  title = 'Ana Beatriz | Portfólio',
-  description = 'Portfólio de Ana Beatriz, desenvolvedora de sistemas em transição para a área de dados.',
-  lang = 'pt-BR',
-} = Astro.props;
+const { lang = 'pt' } = Astro.props as Props;
+const locale = lang === 'en' ? en : pt;
+const { title, description } = locale.meta;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={locale.meta.lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
