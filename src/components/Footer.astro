@@ -1,11 +1,17 @@
+---
+const publicBase = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
 <footer class="border-t border-white/10 bg-[#0B0E14]">
   <div class="mx-auto flex w-[min(100%-2rem,1200px)] flex-col gap-5 py-7 sm:flex-row sm:items-center sm:justify-between">
     <a
       href="#inicio"
       class="inline-flex w-fit items-center gap-3"
-      aria-label="Ana Beatriz — voltar ao início"
+      aria-label="Ana Beatriz - voltar ao início"
     >
-      <img src="/public/logo.svg" alt="ab. — Ana Beatriz" width="56" height="32" />
+      <img src={`${publicBase}logo.svg`} alt="ab. — Ana Beatriz" width="56" height="32" />
       <span class="h-4 w-px bg-white/15"></span>
       <span class="font-mono text-[10px] uppercase tracking-wider text-slate-500">
         Sistemas <span class="text-[#A12D21]">/</span> Dados

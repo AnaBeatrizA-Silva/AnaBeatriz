@@ -1,5 +1,9 @@
 ---
 import { navigation } from '../data/navigation';
+
+const publicBase = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 ---
 
 <header class="sticky top-0 z-50 border-b border-[#1572B6]/20 bg-[#0B0E14]/95 backdrop-blur-md">
@@ -12,7 +16,7 @@ import { navigation } from '../data/navigation';
       class="flex shrink-0 items-center gap-2"
       aria-label="Ana Beatriz"
     >
-      <img src="/public/logo.svg" alt="ab. — Ana Beatriz" width="92" height="52" />
+      <img src={`${publicBase}logo.svg`} alt="ab. — Ana Beatriz" width="92" height="52" />
     </a>
 
     <ul class="hidden items-center gap-5 lg:flex">

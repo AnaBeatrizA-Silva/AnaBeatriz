@@ -8,7 +8,7 @@ export const education = {
     {
       institution: 'Centro Universitário Católica de Joinville',
       course: 'Bacharelado em Engenharia de Software',
-      period: '2025 — 2029',
+      period: '2025 - 2029',
       status: 'Em andamento',
       type: 'Graduação',
       description:
@@ -18,7 +18,7 @@ export const education = {
     {
       institution: 'SENAC Joinville',
       course: 'Técnico em Informática para Internet',
-      period: '2021 — 2023',
+      period: '2021 - 2023',
       status: 'Concluído',
       type: 'Ensino técnico integrado ao médio',
       description:

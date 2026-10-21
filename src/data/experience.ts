@@ -8,7 +8,7 @@ export const experience = {
     {
       company: 'Freeline Informática',
       role: 'Desenvolvedora Júnior',
-      period: 'Jul. 2026 — Atual',
+      period: 'Jul. 2026 - Atual',
       type: 'Desenvolvimento de Sistemas',
       description:
         'Desenvolvimento e manutenção de funcionalidades em sistemas ERP, com foco na evolução das aplicações e na resolução de problemas.',
@@ -25,7 +25,7 @@ export const experience = {
     {
       company: 'Transmagna Transportes',
       role: 'Analista de TI Júnior',
-      period: 'Out. 2024 — Jun. 2026',
+      period: 'Out. 2024 - Jun. 2026',
       type: 'Tecnologia da Informação',
       description:
         'Atuação no suporte e na manutenção da infraestrutura de TI, contribuindo para o funcionamento dos recursos tecnológicos da empresa.',
