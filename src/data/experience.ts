@@ -19,13 +19,7 @@ export const experience = {
         'Contato com migrações de bancos PostgreSQL durante a evolução do sistema.',
         'Uso de Docker e ambiente Linux Ubuntu.',
       ],
-      technologies: [
-        'Vue 3',
-        'TypeScript',
-        'PostgreSQL',
-        'Docker',
-        'Linux',
-      ],
+      technologies: ['Vue 3', 'TypeScript', 'PostgreSQL', 'Docker', 'Linux'],
       accent: 'blue',
     },
     {
