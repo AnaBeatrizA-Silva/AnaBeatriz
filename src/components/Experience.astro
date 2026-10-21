@@ -1,0 +1,95 @@
+---
+import { experience } from '../data/experience';
+---
+
+<section
+  id="experiencia"
+  class="border-b border-white/5 bg-[#0B0E14] py-24 sm:py-28"
+>
+  <div class="mx-auto w-[min(100%-2rem,1200px)]">
+    <header class="mb-16 max-w-2xl">
+      <p class="mb-4 flex items-center gap-3 font-mono text-xs tracking-[0.2em] text-[#1572B6]">
+        <span class="h-px w-8 bg-[#1572B6]"></span>
+        {experience.eyebrow}
+      </p>
+
+      <h2 class="text-3xl font-bold tracking-tight text-[#E8EDF4] sm:text-4xl">
+        {experience.title}
+      </h2>
+
+      <p class="mt-5 text-base leading-8 text-slate-400 sm:text-lg">
+        {experience.description}
+      </p>
+    </header>
+
+    <div class="relative space-y-12 before:absolute before:bottom-4 before:left-1.75 before:top-2 before:w-px before:bg-linear-to-b before:from-[#1572B6]/70 before:via-white/10 before:to-[#A12D21]/70">
+      {experience.jobs.map((job, index) => (
+        <article class="relative pl-8 sm:pl-12">
+          <span
+            class:list={[
+              'absolute left-0 top-2 h-4 w-4 border-4 border-[#0B0E14]',
+              job.accent === 'red' ? 'bg-[#A12D21]' : 'bg-[#1572B6]',
+            ]}
+          ></span>
+
+          <div class="border border-white/10 bg-[#151B24]/50 p-6 transition-colors hover:border-white/20 sm:p-8">
+            <div class="flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-start md:justify-between">
+              <div>
+                <p class="mb-2 font-mono text-xs tracking-wider text-slate-500">
+                  {String(index + 1).padStart(2, '0')} / {job.type}
+                </p>
+
+                <h3 class="text-xl font-bold text-[#E8EDF4] sm:text-2xl">
+                  {job.role}
+                </h3>
+
+                <p class="mt-2 text-base font-medium text-[#1572B6]">
+                  {job.company}
+                </p>
+              </div>
+
+              <span class="w-fit shrink-0 border border-white/10 px-3 py-2 font-mono text-xs text-slate-400">
+                {job.period}
+              </span>
+            </div>
+
+            <p class="mt-6 text-sm leading-7 text-slate-400 sm:text-base">
+              {job.description}
+            </p>
+
+            <div class="mt-7">
+              <h4 class="mb-4 font-mono text-xs tracking-widest text-slate-500">
+                PRINCIPAIS ATIVIDADES
+              </h4>
+
+              <ul class="space-y-3">
+                {job.activities.map((activity) => (
+                  <li class="flex items-start gap-3 text-sm leading-6 text-slate-400">
+                    <span
+                      class:list={[
+                        'mt-2 h-1.5 w-1.5 shrink-0',
+                        job.accent === 'red'
+                          ? 'bg-[#A12D21]'
+                          : 'bg-[#1572B6]',
+                      ]}
+                    ></span>
+
+                    <span>{activity}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="mt-7 flex flex-wrap gap-2 border-t border-white/10 pt-6">
+              {job.technologies.map((technology) => (
+                <span class="border border-white/10 bg-[#0B0E14]/50 px-3 py-1.5 font-mono text-xs text-slate-400">
+                  {technology}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+import { contact } from '../data/contact';
+---
+
+<section
+  id="contato"
+  class="relative isolate overflow-hidden border-y border-white/5 bg-[#0E121A] py-20 sm:py-24"
+>
+  <div class="pointer-events-none absolute -right-32 top-0 -z-10 h-80 w-80 rounded-full bg-[#1572B6]/10 blur-[120px]"></div>
+  <div class="pointer-events-none absolute -bottom-40 left-0 -z-10 h-80 w-80 rounded-full bg-[#A12D21]/10 blur-[120px]"></div>
+
+  <div class="mx-auto grid w-[min(100%-2rem,1200px)] gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:gap-20">
+    <div>
+      <p class="mb-5 flex items-center gap-3 font-mono text-xs tracking-[0.18em] text-[#1572B6]">
+        <span class="h-px w-8 bg-[#1572B6]"></span>
+        {contact.eyebrow}
+      </p>
+
+      <h2 class="max-w-xl text-3xl font-bold leading-tight tracking-tight text-[#E8EDF4] sm:text-4xl lg:text-5xl">
+        {contact.title}
+      </h2>
+
+      <p class="mt-5 max-w-xl text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
+        {contact.description}
+      </p>
+
+      <a
+        href={`mailto:${contact.email}`}
+        class="mt-8 inline-flex min-h-12 items-center gap-4 bg-[#A12D21] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#86251C]"
+      >
+        Enviar um e-mail
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="border border-white/10 bg-[#151B24]/70 p-2 sm:p-3">
+      <a
+        href={`mailto:${contact.email}`}
+        class="group flex min-h-[76px] items-center gap-4 border-b border-white/10 px-4 py-4 transition-colors hover:bg-white/[0.03] sm:px-5"
+      >
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center border border-[#A12D21]/40 bg-[#A12D21]/10 font-mono text-sm text-[#A12D21]">@</span>
+        <span class="min-w-0 flex-1">
+          <span class="block font-mono text-[10px] uppercase tracking-widest text-slate-500">E-mail</span>
+          <span class="mt-1 block break-all text-xs text-slate-200 sm:text-sm">{contact.email}</span>
+        </span>
+        <span class="text-[#A12D21] transition-transform group-hover:translate-x-1" aria-hidden="true">↗</span>
+      </a>
+
+      {contact.links.map((link) => (
+        <a
+          href={link.href}
+          target={link.external ? '_blank' : undefined}
+          rel={link.external ? 'noopener noreferrer' : undefined}
+          class="group flex min-h-[76px] items-center gap-4 border-b border-white/10 px-4 py-4 last:border-b-0 transition-colors hover:bg-white/[0.03] sm:px-5"
+        >
+          <span
+            class:list={[
+              'flex h-10 w-10 shrink-0 items-center justify-center border font-mono text-[11px]',
+              link.accent === 'red'
+                ? 'border-[#A12D21]/40 bg-[#A12D21]/10 text-[#A12D21]'
+                : 'border-[#1572B6]/40 bg-[#1572B6]/10 text-[#1572B6]',
+            ]}
+            aria-hidden="true"
+          >
+            {link.label === 'LinkedIn' ? 'in' : link.label === 'GitHub' ? 'GH' : '☎'}
+          </span>
+          <span class="min-w-0 flex-1">
+            <span class="block font-mono text-[10px] uppercase tracking-widest text-slate-500">{link.label}</span>
+            <span class="mt-1 block truncate text-sm text-slate-200">{link.value}</span>
+          </span>
+          <span class="text-slate-500 transition-colors group-hover:text-[#1572B6]" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
