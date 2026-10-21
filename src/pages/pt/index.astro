@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Experience from '../../components/Experience.astro';
+import Projects from '../../components/Projects.astro';
+import Stack from '../../components/Stack.astro';
+import Education from '../../components/Education.astro';
+import Contact from '../../components/Contact.astro';
+
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Ana Beatriz | Desenvolvedora de Sistemas"
+  description="Portfólio de Ana Beatriz Adriano da Silva, desenvolvedora de sistemas com experiência em ERP e bancos de dados, em transição para a área de dados."
+  lang="pt"
+>
+  <Navbar />
+
+  <main>
+    <Hero />
+    <About />
+    <Experience />
+    <Projects />
+    <Stack />
+    <Education />
+    <Contact />
+  </main>
+  
+  <Footer />
+</Layout>
