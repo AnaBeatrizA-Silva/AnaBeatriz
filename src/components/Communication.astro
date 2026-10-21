@@ -1,0 +1,78 @@
+---
+import { communication } from '../data/communication';
+---
+
+<section
+  id="comunicacao"
+  class="border-y border-white/5 bg-[#0E121A] py-20 sm:py-24"
+>
+  <div class="mx-auto w-[min(100%-2rem,1100px)]">
+    <header class="mx-auto mb-10 max-w-2xl text-center sm:mb-12">
+      <p class="mb-4 flex items-center justify-center gap-3 font-mono text-xs tracking-[0.2em] text-[#1572B6]">
+        <span class="h-px w-8 bg-[#1572B6]"></span>
+        {communication.eyebrow}
+        <span class="h-px w-8 bg-[#1572B6]"></span>
+      </p>
+      <h2 class="text-3xl font-bold tracking-tight text-[#E8EDF4] sm:text-4xl">
+        Comunicação &amp; idiomas
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
+        {communication.description}
+      </p>
+    </header>
+
+    <div class="grid gap-5 md:grid-cols-[1.2fr_0.8fr]">
+      <article class="border border-white/10 bg-[#151B24]/50 p-6 sm:p-8">
+        <div class="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+          <h3 class="text-base font-semibold text-[#E8EDF4]">No dia a dia</h3>
+          <span class="font-mono text-[10px] tracking-widest text-[#A12D21]">SOFT_SKILLS</span>
+        </div>
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {communication.strengths.map((strength, index) => (
+            <li class="flex min-h-12 items-center gap-3 border border-white/5 bg-[#0B0E14]/60 px-3 py-2.5 text-sm text-slate-300">
+              <span
+                class:list={[
+                  'flex h-6 w-6 shrink-0 items-center justify-center font-mono text-[9px]',
+                  index % 2 === 0
+                    ? 'bg-[#A12D21]/10 text-[#A12D21]'
+                    : 'bg-[#1572B6]/10 text-[#1572B6]',
+                ]}
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              {strength}
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="border border-[#1572B6]/25 bg-[#1572B6]/[0.04] p-6 sm:p-8">
+        <div class="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+          <h3 class="text-base font-semibold text-[#E8EDF4]">Idiomas</h3>
+          <span class="font-mono text-[10px] tracking-widest text-[#1572B6]">LANGUAGES</span>
+        </div>
+        <div class="grid gap-3">
+          {communication.languages.map((language, index) => (
+            <div class="flex min-h-[76px] items-center gap-4 border border-white/10 bg-[#0B0E14]/65 px-4 py-3">
+              <span
+                class:list={[
+                  'flex h-10 w-10 shrink-0 items-center justify-center font-mono text-xs',
+                  index === 0
+                    ? 'bg-[#A12D21]/10 text-[#A12D21]'
+                    : 'bg-[#1572B6]/10 text-[#1572B6]',
+                ]}
+              >
+                {language.code}
+              </span>
+              <div>
+                <p class="m-0 text-sm font-medium text-[#E8EDF4]">{language.name}</p>
+                <p class="mt-1 text-xs text-slate-500">{language.proficiency}</p>
+              </div>
+              <span class="ml-auto h-2 w-2 bg-[#1572B6]"></span>
+            </div>
+          ))}
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

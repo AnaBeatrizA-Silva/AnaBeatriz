@@ -71,27 +71,5 @@ import { stack } from '../data/stack';
         </article>
       ))}
     </div>
-
-    <div class="mt-8 border border-[#1572B6]/20 bg-[#1572B6]/5 p-6 sm:p-8">
-      <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p class="font-mono text-xs tracking-widest text-[#1572B6]">
-            COMUNICAÇÃO
-          </p>
-
-          <h3 class="mt-2 text-lg font-semibold text-[#E8EDF4]">Idiomas</h3>
-        </div>
-
-        <div class="flex flex-wrap gap-3">
-          {stack.languages.map((language) => (
-            <div class="border border-white/10 bg-[#0B0E14]/60 px-4 py-3">
-              <p class="text-sm font-medium text-[#E8EDF4]">{language.name}</p>
-
-              <p class="mt-1 text-xs text-slate-500">{language.proficiency}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
   </div>
 </section>

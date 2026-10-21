@@ -129,7 +129,11 @@ import { hero } from '../data/hero';
               </div>
             </div>
 
-            <div class="ml-5 h-8 w-px bg-linear-to-b from-[#1572B6] to-[#A12D21]"></div>
+            <div class="data-flow-line ml-5 h-8 w-px bg-linear-to-b from-[#1572B6] to-[#A12D21]" aria-hidden="true">
+              <span class="data-packet data-packet-blue"></span>
+              <span class="data-packet data-packet-red"></span>
+              <span class="data-packet data-packet-blue"></span>
+            </div>
 
             <div class="flex items-center gap-3">
               <span class="flex h-10 w-10 shrink-0 items-center justify-center border border-[#A12D21]/30 bg-[#A12D21]/10 font-mono text-sm text-[#A12D21]">
@@ -146,7 +150,11 @@ import { hero } from '../data/hero';
               </div>
             </div>
 
-            <div class="ml-5 h-8 w-px bg-linear-to-b from-[#A12D21] to-[#1572B6]"></div>
+            <div class="data-flow-line ml-5 h-8 w-px bg-linear-to-b from-[#A12D21] to-[#1572B6]" aria-hidden="true">
+              <span class="data-packet data-packet-red"></span>
+              <span class="data-packet data-packet-blue"></span>
+              <span class="data-packet data-packet-red"></span>
+            </div>
 
             <div class="flex items-center gap-3">
               <span class="flex h-10 w-10 shrink-0 items-center justify-center border border-[#1572B6]/30 bg-[#1572B6]/10 font-mono text-sm text-[#1572B6]">
@@ -188,3 +196,49 @@ import { hero } from '../data/hero';
     <span>Desenvolvimento · Dados · Aprendizado contínuo</span>
   </div>
 </section>
+
+<style>
+  .data-flow-line {
+    overflow: visible;
+  }
+
+  .data-packet {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    opacity: 0;
+    animation: data-flow-travel 1.8s ease-in-out infinite;
+  }
+
+  .data-packet:nth-child(2) {
+    animation-delay: 0.55s;
+  }
+
+  .data-packet:nth-child(3) {
+    animation-delay: 1.1s;
+  }
+
+  .data-packet-blue {
+    background: #1572b6;
+    box-shadow: 0 0 8px #1572b680;
+  }
+
+  .data-packet-red {
+    background: #a12d21;
+    box-shadow: 0 0 8px #a12d2180;
+  }
+
+  @keyframes data-flow-travel {
+    0% { transform: translateY(0); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateY(28px); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .data-packet { animation: none; opacity: 1; }
+  }
+</style>

@@ -1,7 +1,7 @@
 export const hero = {
   greeting: 'Olá, eu sou',
-  name: 'Ana Beatriz',
-  surname: 'Adriano da Silva',
+  name: 'Ana',
+  surname: 'Beatriz',
   role: 'Desenvolvedora de Sistemas',
   transition: 'em transição para a área de Dados',
 

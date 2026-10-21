@@ -54,15 +54,4 @@ export const stack = {
       ],
     },
   ],
-
-  languages: [
-    {
-      name: 'Português',
-      proficiency: 'Nativo',
-    },
-    {
-      name: 'Inglês',
-      proficiency: 'Intermediário a avançado',
-    },
-  ],
 };
